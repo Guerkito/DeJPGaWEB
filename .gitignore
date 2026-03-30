@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+static/webp_optimizados/*
+.env
+.DS_Store
