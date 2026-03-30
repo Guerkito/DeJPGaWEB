@@ -1,10 +1,22 @@
 import os
 import re
 import unicodedata
+import sys
+import webbrowser
+from threading import Timer
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from PIL import Image
 
-app = Flask(__name__)
+# Configuración para PyInstaller: determinar la ruta base
+if getattr(sys, 'frozen', False):
+    # Si es un ejecutable, usa la carpeta temporal de PyInstaller
+    template_folder = os.path.join(sys._MEIPASS, 'templates')
+    static_folder = os.path.join(sys._MEIPASS, 'static')
+    app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
+else:
+    # Si es modo desarrollo
+    app = Flask(__name__)
+
 UPLOAD_FOLDER = 'static/webp_optimizados'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
@@ -79,8 +91,17 @@ def upload_files():
 def download_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
 
+def open_browser():
+    webbrowser.open_new('http://127.0.0.1:5000/')
+
 if __name__ == '__main__':
     print("\n" + "="*50)
-    print(" Dashboard iniciado: Abre http://127.0.0.1:5000")
+    print(" Convertidor iniciado: Abriendo navegador...")
     print("="*50 + "\n")
-    app.run(debug=True, port=5000)
+    
+    # Abrir el navegador solo una vez después de 1 segundo
+    Timer(1, open_browser).start()
+    
+    # En producción (ejecutable), debug debe ser False
+    is_dev = not getattr(sys, 'frozen', False)
+    app.run(debug=is_dev, port=5000, use_reloader=False)
