@@ -1,41 +1,36 @@
-# DeJPGaWEB 🚀
+# DeJPGaWEB 🖼️➡️🌐
 
-Convierte tus imágenes JPG y PNG a **WebP** de forma masiva y sencilla. Optimiza tus imágenes para la web, reduce el tiempo de carga de tu sitio y mejora tu SEO automáticamente.
+Un conversor moderno de imágenes JPG/PNG a WebP optimizado, con una interfaz web limpia y funcional.
 
-## ✨ Características
-- **Conversión masiva:** Arrastra y suelta múltiples imágenes.
-- **Nombres SEO-Friendly:** Limpia automáticamente los nombres de archivos (quita acentos, espacios y caracteres raros).
-- **Formato WebP:** Utiliza el estándar moderno de Google para imágenes ligeras.
-- **Interfaz moderna:** Dashboard limpio construido con Flask y Tailwind CSS.
+## 🚀 Características
+- ✅ Conversión rápida de múltiples archivos.
+- ✅ Optimización de nombres (limpieza de acentos y espacios).
+- ✅ Vista previa y descarga directa de los archivos convertidos.
+- ✅ Interfaz moderna y responsive.
 
-## 🚀 Instalación rápida
+## 💻 Uso para Desarrolladores (Python)
 
-1. Clona el repositorio:
+1. **Instalar dependencias:**
    ```bash
-   git clone https://github.com/TU_USUARIO/DeJPGaWEB.git
-   cd DeJPGaWEB
-   ```
-
-2. Crea un entorno virtual e instala las dependencias:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # En Windows usa: venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-3. Ejecuta la aplicación:
+2. **Ejecutar la aplicación:**
    ```bash
    python app.py
    ```
+   Abre tu navegador en `http://127.0.0.1:5000`.
 
-4. Abre en tu navegador: `http://127.0.0.1:5000`
+## 📦 Cómo crear el Ejecutable (.exe) para Windows
 
-## 🛠️ Tecnologías
-- Python 3
-- Flask (Servidor Web)
-- Pillow (Procesamiento de imágenes)
-- Tailwind CSS (Diseño)
+Si quieres usar la aplicación como un programa independiente o pasársela a alguien que no tenga Python instalado:
+
+1. **En una computadora con Windows**, descarga o clona este repositorio.
+2. Haz doble clic en el archivo **`Generar_Ejecutable.bat`**.
+3. El script instalará automáticamente `PyInstaller` y preparará todo.
+4. Al finalizar, encontrarás tu archivo **`ConvertidorWebP.exe`** dentro de la carpeta `dist/`.
+
+¡Ese archivo `.exe` es todo lo que necesitas! Puedes moverlo al escritorio o enviarlo por chat. Al abrirlo, el navegador se abrirá automáticamente con el conversor listo para usar.
 
 ---
-Desarrollado para optimizar la web.
-# DeJPGaWEB
+Creado con ❤️ para optimizar la web.
