@@ -1,0 +1,37 @@
+name: Generar Ejecutable Windows
+
+on:
+  push:
+    tags:
+      - 'v*' # Se activa cuando creas una etiqueta de versión (ej: v1.0)
+  workflow_dispatch: # Permite activarlo manualmente desde la pestaña Actions
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Crear el ejecutable con PyInstaller
+      run: |
+        pyinstaller --noconfirm --onefile --windowed --add-data "templates;templates" --add-data "static;static" --name "ConvertidorWebP" app.py
+
+    - name: Crear Release y subir el .exe
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: dist/ConvertidorWebP.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
