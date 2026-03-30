@@ -38,3 +38,4 @@ Convierte tus imágenes JPG y PNG a **WebP** de forma masiva y sencilla. Optimiz
 
 ---
 Desarrollado para optimizar la web.
+# DeJPGaWEB
