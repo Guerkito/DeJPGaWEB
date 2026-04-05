@@ -112,6 +112,17 @@ def download_all():
         download_name='imagenes_optimizadas.zip'
     )
 
+@app.route('/clear', methods=['POST'])
+def clear_files():
+    try:
+        for filename in os.listdir(UPLOAD_FOLDER):
+            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 def open_browser():
     webbrowser.open_new('http://127.0.0.1:5000/')
 

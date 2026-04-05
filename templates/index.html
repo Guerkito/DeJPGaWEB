@@ -75,10 +75,16 @@
                         <h3 class="text-lg font-bold text-slate-800">Archivos Optimizados</h3>
                         <span id="counter" class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">0</span>
                     </div>
-                    <a href="/download-all" class="px-4 py-2 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md flex items-center space-x-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        <span>Descargar Todos</span>
-                    </a>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="clearAll()" class="px-4 py-2 bg-slate-100 text-slate-600 text-sm font-bold rounded-xl hover:bg-slate-200 transition-all flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            <span>Limpiar Lista</span>
+                        </button>
+                        <a href="/download-all" class="px-4 py-2 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            <span>Descargar Todos</span>
+                        </a>
+                    </div>
                 </div>
                 <div id="file-list" class="space-y-3">
                     <!-- Los items se inyectan aquí -->
@@ -136,6 +142,30 @@
             });
         }
 
+        function clearAll() {
+            fetch('/clear', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    fileList.innerHTML = '';
+                    totalFiles = 0;
+                    counter.innerText = '0';
+                    results.classList.add('hidden');
+                }
+            });
+        }
+
+        function removeOne(btn) {
+            const item = btn.closest('.animate-fade-in');
+            item.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                item.remove();
+                totalFiles--;
+                counter.innerText = totalFiles;
+                if(totalFiles === 0) results.classList.add('hidden');
+            }, 300);
+        }
+
         function showResults(archivos) {
             results.classList.remove('hidden');
             archivos.forEach(archivo => {
@@ -155,9 +185,14 @@
                             <span class="text-xs text-slate-400">Original: ${archivo.original}</span>
                         </div>
                     </div>
-                    <a href="${archivo.url}" download class="ml-4 px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
-                        Descargar
-                    </a>
+                    <div class="flex items-center space-x-2">
+                        <a href="${archivo.url}" download class="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+                            Descargar
+                        </a>
+                        <button onclick="removeOne(this)" class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
                 `;
                 fileList.insertBefore(div, fileList.firstChild);
             });
