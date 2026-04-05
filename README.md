@@ -1,37 +1,39 @@
 # DeJPGaWEB 🖼️➡️🌐
 
-Un conversor moderno de imágenes JPG/PNG a WebP optimizado, con una interfaz web limpia y funcional.
+¡Convierte tus imágenes a WebP de forma masiva, rápida y sencilla! Optimiza tu sitio web con el formato de última generación de Google sin complicaciones técnicas.
 
-## 🚀 Características
-- ✅ Conversión rápida de múltiples archivos.
-- ✅ Optimización de nombres (limpieza de acentos y espacios).
-- ✅ Vista previa y descarga directa de los archivos convertidos.
-- ✅ **Descarga masiva:** Baja todas tus imágenes optimizadas en un solo archivo ZIP.
-- ✅ Interfaz moderna y responsive.
+## ✨ Características Principales
+- ⚡ **Conversión en Lote:** Suelta decenas de imágenes y conviértelas todas al instante.
+- 🧹 **Nombres Limpios:** Corrige automáticamente acentos, espacios y caracteres extraños para un SEO perfecto.
+- 📦 **Descarga Masiva:** Baja todos tus archivos optimizados en un único archivo ZIP.
+- 🗑️ **Gestión Inteligente:** Quita imágenes individuales de la lista o limpia todo el lote para empezar de cero.
+- 🎨 **Interfaz Moderna:** Diseño limpio, intuitivo y con modo de arrastrar y soltar (Drag & Drop).
 
-## 💻 Uso para Desarrolladores (Python)
+## 🚀 Cómo empezar a usarlo
 
-1. **Instalar dependencias:**
+### 🛠️ Para Usuarios (Sin instalar nada)
+Si solo quieres usar la herramienta, puedes generar el ejecutable para Windows:
+1. Descarga este repositorio.
+2. Ejecuta el archivo **`Generar_Ejecutable.bat`**.
+3. Al terminar, abre el archivo **`ConvertidorWebP.exe`** en la carpeta `dist/`.
+*¡El navegador se abrirá solo con la herramienta lista!*
+
+### 💻 Para Desarrolladores (Python)
+1. **Instala las dependencias:**
    ```bash
    pip install -r requirements.txt
    ```
-
-2. **Ejecutar la aplicación:**
+2. **Lanza la aplicación:**
    ```bash
    python app.py
    ```
-   Abre tu navegador en `http://127.0.0.1:5000`.
+   Accede desde tu navegador en: `http://127.0.0.1:5000`
 
-## 📦 Cómo crear el Ejecutable (.exe) para Windows
-
-Si quieres usar la aplicación como un programa independiente o pasársela a alguien que no tenga Python instalado:
-
-1. **En una computadora con Windows**, descarga o clona este repositorio.
-2. Haz doble clic en el archivo **`Generar_Ejecutable.bat`**.
-3. El script instalará automáticamente `PyInstaller` y preparará todo.
-4. Al finalizar, encontrarás tu archivo **`ConvertidorWebP.exe`** dentro de la carpeta `dist/`.
-
-¡Ese archivo `.exe` es todo lo que necesitas! Puedes moverlo al escritorio o enviarlo por chat. Al abrirlo, el navegador se abrirá automáticamente con el conversor listo para usar.
+## 🛠️ Tecnologías
+- **Backend:** Flask (Python)
+- **Procesamiento:** Pillow (PIL)
+- **Frontend:** Tailwind CSS + JavaScript
+- **Empaquetado:** PyInstaller
 
 ---
-Creado con ❤️ para optimizar la web.
+Optimizado para **Google PageSpeed** y **Core Web Vitals**. Creado con ❤️ para hacer la web más ligera.
