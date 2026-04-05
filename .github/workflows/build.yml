@@ -27,6 +27,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flask pillow pyinstaller
 
+    - name: Crear carpetas de recursos si faltan
+      run: |
+        if (!(Test-Path templates)) { New-Item -ItemType Directory -Path templates }
+        if (!(Test-Path static)) { New-Item -ItemType Directory -Path static }
+        if (!(Test-Path static/webp_optimizados)) { New-Item -ItemType Directory -Path static/webp_optimizados }
+
     - name: Crear el ejecutable con PyInstaller
       run: pyinstaller --noconfirm --onefile --windowed --add-data "templates;templates" --add-data "static;static" --name "ConvertidorWebP" app.py
 
