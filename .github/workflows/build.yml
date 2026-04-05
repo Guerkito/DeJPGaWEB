@@ -28,8 +28,7 @@ jobs:
         pip install flask pillow pyinstaller
 
     - name: Crear el ejecutable con PyInstaller
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --add-data "templates;templates" --add-data "static;static" --name "ConvertidorWebP" app.py
+      run: pyinstaller --noconfirm --onefile --windowed --add-data "templates;templates" --add-data "static;static" --name "ConvertidorWebP" app.py
 
     - name: Subir el .exe como artefacto
       uses: actions/upload-artifact@v4
