@@ -71,8 +71,14 @@
             <!-- Lista de Resultados (Estilo moderno) -->
             <div id="results" class="hidden mt-10">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-bold text-slate-800">Archivos Optimizados</h3>
-                    <span id="counter" class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">0</span>
+                    <div class="flex items-center space-x-3">
+                        <h3 class="text-lg font-bold text-slate-800">Archivos Optimizados</h3>
+                        <span id="counter" class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">0</span>
+                    </div>
+                    <a href="/download-all" class="px-4 py-2 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-md flex items-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <span>Descargar Todos</span>
+                    </a>
                 </div>
                 <div id="file-list" class="space-y-3">
                     <!-- Los items se inyectan aquí -->

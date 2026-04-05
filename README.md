@@ -6,6 +6,7 @@ Un conversor moderno de imágenes JPG/PNG a WebP optimizado, con una interfaz we
 - ✅ Conversión rápida de múltiples archivos.
 - ✅ Optimización de nombres (limpieza de acentos y espacios).
 - ✅ Vista previa y descarga directa de los archivos convertidos.
+- ✅ **Descarga masiva:** Baja todas tus imágenes optimizadas en un solo archivo ZIP.
 - ✅ Interfaz moderna y responsive.
 
 ## 💻 Uso para Desarrolladores (Python)

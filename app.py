@@ -3,8 +3,10 @@ import re
 import unicodedata
 import sys
 import webbrowser
+import zipfile
+import io
 from threading import Timer
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, send_file
 from PIL import Image
 
 # Configuración para PyInstaller: determinar la ruta base
@@ -90,6 +92,25 @@ def upload_files():
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename, as_attachment=True)
+
+@app.route('/download-all')
+def download_all():
+    # Crear un archivo ZIP en memoria
+    memory_file = io.BytesIO()
+    with zipfile.ZipFile(memory_file, 'w') as zf:
+        # Solo incluir archivos que existan en el directorio de salida
+        for filename in os.listdir(UPLOAD_FOLDER):
+            if filename.lower().endswith('.webp'):
+                filepath = os.path.join(UPLOAD_FOLDER, filename)
+                zf.write(filepath, arcname=filename)
+    
+    memory_file.seek(0)
+    return send_file(
+        memory_file,
+        mimetype='application/zip',
+        as_attachment=True,
+        download_name='imagenes_optimizadas.zip'
+    )
 
 def open_browser():
     webbrowser.open_new('http://127.0.0.1:5000/')
